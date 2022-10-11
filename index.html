@@ -56,7 +56,7 @@
 
     <!-- Body -->
     <main>
-        <h3 class="pt2 pb1 align--center">Hi! This is a fun little website I made full of fun little surprises :)</h3>
+        <h3 class="pt2 pb1 align--center ft">Hi! This is a fun little website I made full of fun little surprises :)</h3>
         <div class="container" style="text-align: center;">
           <button class="fb" onclick="playrickroll()"><h1>Click me!</h1></button>
         </div>
@@ -88,6 +88,12 @@
         for (var i = 0; i < th.length; i++) {
           th[i].style.display = "none";
         }
+
+        th = document.getElementsByClassName("ft");
+        for (var i = 0; i < th.length; i++) {
+          th[i].style.display = "none";
+        }
+
 
         var ts = document.getElementsByClassName("rickroll");
         for (var i = 0; i < ts.length; i++) {
