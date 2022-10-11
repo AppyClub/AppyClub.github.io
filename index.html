@@ -21,10 +21,7 @@
 
     </head>
 
-    <style>
-    </style>
-
-    <body class="has-animations">
+    <body class="has-animations" onload="playVid()">
 
     <!-- Header -->
     <header class="pt2 pb1 align--center">
@@ -36,7 +33,7 @@
     </header>
 
     <!-- Body -->
-    <main onload="playVid()">
+    <main>
         <div class="container">
           <video width="960" height="720" style="display: block; text-align: center;" id="video" loop>
             <source src="media/rickrollvideo.mp4" type="video/mp4">
@@ -59,8 +56,9 @@
 
     <!-- Custom scripts -->
     <script>
+      var vid = document.getElementById("video").play();
       function playVid() {
-        document.getElementById("video").play();
+        vid.play();
       }
     </script>
 
