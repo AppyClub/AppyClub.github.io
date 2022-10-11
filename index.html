@@ -7,7 +7,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
-        <title>A Beautiful Song</title>
+        <title>A Beautiful Song 1</title>
         <meta name="description" content="">
 
         <!-- The compiled CSS file -->
@@ -35,7 +35,7 @@
     <!-- Body -->
     <main>
         <div class="container">
-          <video width="960" height="720" style="display: block; text-align: center;" id="video" loop playsinline autoplay muted>
+          <video width="960" height="720" style="display: block; text-align: center;" id="video" loop playsinline>
             <source src="media/rickrollvideo.mp4" type="video/mp4">
           </video>
         </div>
@@ -56,6 +56,9 @@
 
     <!-- Custom scripts -->
     <script>
+    setTimeout(function () {
+        document.getElementById('video').play();
+    },1000);
     </script>
     </body>
 </html>
