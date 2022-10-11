@@ -21,10 +21,32 @@
 
     </head>
 
+    <!-- Style -->
+    <style>
+      .rickroll {
+        display: none;
+      }
+
+      .fb {
+        background-color: #be4dda;
+        border-radius: 250px; 
+        border: 0px; 
+        width: 300px; 
+        height: 300px;
+        padding: 10px 10px 10px 10px;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .fb:hover {
+        background-color: #d07fe4;
+      }
+    </style>
+
     <body class="has-animations">
 
     <!-- Header -->
-    <header class="pt2 pb1 align--center">
+    <header class="pt2 pb1 align--center rickroll">
         <div class="container">
             <p>Welcome to</p>
             <h1 title="A Rick Roll">Rick Astley</h1>
@@ -34,15 +56,19 @@
 
     <!-- Body -->
     <main>
-        <div class="container">
-          <video width="960" height="720" style="display: block; text-align: center;" id="video" loop playsinline autoplay muted>
+        <div class="container" style="text-align: center;">
+          <button class="fb" onclick="playrickroll()"><h1>Click me!</h1></button>
+        </div>
+
+        <div class="container rickroll">
+          <video width="960" height="720" style="display: block; text-align: center;" id="video" loop playsinline>
             <source src="media/rickrollvideo.mp4" type="video/mp4">
           </video>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="pt2 pb2">
+    <footer class="pt2 pb2 rickroll">
         <div class="container align--center">
             <p>You're welcome.</p>
         </div>
@@ -56,6 +82,19 @@
 
     <!-- Custom scripts -->
     <script>
+      function playrickroll() {
+        var th = document.getElementsByClassName("fb");
+        for (var i = 0; i < th.length; i++) {
+          th[i].style.display = "none";
+        }
+
+        var ts = document.getElementsByClassName("rickroll");
+        for (var i = 0; i < ts.length; i++) {
+          ts[i].style.display = "block";
+        }
+
+        document.getElementById("video").play();
+      }
     </script>
     </body>
 </html>
