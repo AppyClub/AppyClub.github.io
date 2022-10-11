@@ -36,9 +36,9 @@
     </header>
 
     <!-- Body -->
-    <main>
+    <main onload="playVid()">
         <div class="container">
-          <video width="960" height="720" style="display: block; text-align: center;" id="video" loop controls>
+          <video width="960" height="720" style="display: block; text-align: center;" id="video" loop>
             <source src="media/rickrollvideo.mp4" type="video/mp4">
           </video>
         </div>
@@ -59,7 +59,9 @@
 
     <!-- Custom scripts -->
     <script>
-      document.getElementById("video").play();
+      function playVid() {
+        document.getElementById("video").play();
+      }
     </script>
 
     </body>
