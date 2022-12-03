@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en-us">
+
+    <head>
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title>Escape Room</title>
+        <meta name="description" content="">
+
+        <!-- The compiled CSS file -->
+        <link rel="stylesheet" href="css/production.css">
+
+        <!-- Web fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Karla:400,700" rel="stylesheet">
+
+        <!-- favicon.ico. Place these in the root directory. -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+    </head>
+
+    <!-- Style -->
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #field table {
+            border-collapse: collapse;
+            font-size: 150%;
+            font-family: san-serif;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        #field table td {
+            background-color: rgb(195, 195, 195);
+            width: 30px;
+            min-width: 30px;
+            height: 30px;
+            min-height: 30px;
+            border: 1px solid black;    
+        }
+
+        button {
+            width: 100px;
+            height: 30px;
+            background-color:rgb(195, 195, 195);
+            color: black;
+            font-weight: bolder;
+            border-radius: 20px 20px 20px 20px;
+        }
+    </style>
+
+    <body class="has-animations">
+
+    <!-- Header -->
+    <header style="text-align: center; padding-top: 25px; padding-bottom: 50px;">
+        <div>
+            <p>Welcome to</p>
+            <h1 title="Puck Puzzle">Puck Puzzle</h1>
+            <p>Good luck.</p>
+        </div>
+    </header>
+
+    <!-- Body -->
+    <body>
+        <canvas id="myCanvas" width="960" height="640"></canvas>
+
+        <div id="lost" style="display: none;">
+            <h3>You got bombed!</h3>
+            <button id="new-game-button" type="button" onclick="reload()">Start Again</button>
+        </div>  
+    </body>
+
+    <!-- Footer -->
+    <footer>
+        <div style="text-align: center; padding-top: 50px;">
+            <p>Copyright Bread Inc. 2022</p>
+        </div>
+    </footer>
+
+    <!-- Scroll reveal -->
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+    <!-- The compiled JavaScript file -->
+    <script src="js/production.js"></script>
+
+    <!-- Render game -->
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        window.addEventListener('load', function() {
+            // draw grid
+            // start game
+        })
+
+        function createTable() {
+            var table, row, td, i, j;
+            table = document.createElement('table');
+            
+            for (i=0; i<components.num_of_rows; i++) {
+                row = document.createElement('tr');
+                for (j=0; j<components.num_of_cols; j++) {
+                    td = document.createElement('td');
+                    td.id = cellID(i, j);
+                    row.appendChild(td);
+                    addCellListeners(td, i, j);
+                }
+                table.appendChild(row);
+            }
+            return table;
+        }
+
+        function handleCellClick(cell, i, j) {
+
+        }
+
+        function gameOver() {
+            components.alive = false;
+            document.getElementById('lost').style.display = "block";
+        }
+
+        function reload(){
+            window.location.reload();
+        }
+
+        
+        var ballRadius = 10;
+        var x = canvas.width / 2;
+        var y = canvas.height - 30;
+        var dx = 2;
+        var dy = -2;
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBall();
+            
+            if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
+                dy = -dy;
+            }
+            
+            x += dx;
+            y += dy;
+        }
+
+        setInterval(draw, 10);
+    </script>
+    </body>
+</html>

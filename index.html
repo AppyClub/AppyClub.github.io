@@ -7,7 +7,7 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
-        <title>Escape Room</title>
+        <title>FurryCo!</title>
         <meta name="description" content="">
 
         <!-- The compiled CSS file -->
@@ -23,74 +23,86 @@
 
     <!-- Style -->
     <style>
-        * {
-            padding: 0;
-            margin: 0;
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border-bottom-right-radius: 25px;
+            border-bottom-left-radius: 25px;
+            text-align: center;
+            width: 100%;
         }
 
-        canvas {
-            background: #eee;
-            display: block;
-            margin: 0 auto;
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            border-radius: 25px;
+            border: 0px;
+        }
+        
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #cb98f7;
+        }
+        
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #cb98f7;
+        }
+        
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            border-top: none;
+            border-radius: 25px;
+            padding-top: 50px;
+            padding-bottom: 50px;
         }
     </style>
 
     <body class="has-animations">
 
     <!-- Header -->
-    <header style="text-align: center;">
+    <header style="text-align: center; padding-top: 25px; padding-bottom: 50px;">
         <div>
             <p>Welcome to</p>
-            <h1 title="A Puzzle">a Perfectly Punctuated Puck Puzzle</h1>
-            <p>Good luck.</p>
+            <h1 title="FurryCo!">FurryCo!</h1>
+            <p>We furries will qualm your worries!</p>
         </div>
     </header>
 
     <!-- Body -->
     <body>
-        <canvas id="myCanvas" width="960" height="640"></canvas>
+        <div class="container">
+            <!-- Tab links -->
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'Homepage');" id="defaultOpen">Homepage</button>
+                <button class="tablinks" onclick="openCity(event, 'AboutUs');">About Us</button>
+                <button class="tablinks" onclick="openCity(event, 'Donate');">Donate</button>
+            </div>
 
-        <!-- Render game -->
-        <script>
-            var canvas = document.getElementById("myCanvas");
-            var ctx = canvas.getContext("2d");
-            var ballRadius = 10;
-            var x = canvas.width / 2;
-            var y = canvas.height - 30;
-            var dx = 2;
-            var dy = -2;
-
-            function drawBall() {
-                ctx.beginPath();
-                ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-                ctx.fillStyle = "#0095DD";
-                ctx.fill();
-                ctx.closePath();
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawBall();
-                
-                if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
-                    dx = -dx;
-                }
-                if(y + dy > canvas.height-ballRadius || y + dy < ballRadius) {
-                    dy = -dy;
-                }
-                
-                x += dx;
-                y += dy;
-            }
-
-            setInterval(draw, 10);
-        </script>
+            <!-- Homepage content -->
+            <div id="Homepage" class="tabcontent">
+                homepage yay
+            </div>
+            <!-- About Us content -->
+            <div id="AboutUs" class="tabcontent">
+                aboutus yay
+            </div>
+            <!-- Donate content -->
+            <div id="Donate" class="tabcontent">
+                donate yay
+            </div>
+        </div>
     </body>
 
     <!-- Footer -->
     <footer>
-        <div style="text-align: center;">
-            <p>Copyright Bread Inc. 2022</p>
+        <div style="text-align: center; padding-top: 50px;">
+            <p>Copyright FurryCo! 2022</p>
         </div>
     </footer>
 
@@ -100,6 +112,29 @@
     <!-- The compiled JavaScript file -->
     <script src="js/production.js"></script>
 
-    
+    <!-- Custom scripts -->
+    <script>
+        document.getElementById("defaultOpen").click();
+
+        // Switch tabs 
+        function openCity(evt, cn) {
+            var i, tbc, tbls;
+
+            var tabids = ['Homepage', 'AboutUs', 'Donate'];
+            for (let i = 0; i < tabids.length; i++) {
+                if (cn != tabids[i]) {
+                    document.getElementById(tabids[i]).style.display = "none";
+                }
+            }
+
+            tbls = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tbls.length; i++) {
+                tbls[i].className = tbls[i].className.replace(" active", "");
+            }
+
+            document.getElementById(cn).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
     </body>
 </html>
